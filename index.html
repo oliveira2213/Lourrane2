@@ -355,28 +355,23 @@
     </div>
   </div>
 </section>
-      <!-- Música tocando em segundo plano -->
-<video id="bgMusic" autoplay loop playsinline muted></video>
+      <video id="bgVideo" width="560" height="315" controls autoplay loop>
+  <source src="videos/musica.mp4" type="video/mp4">
+  Seu navegador não suporta vídeo HTML5.
+</video>
 
 <script>
-  const bgMusic = document.getElementById('bgMusic');
-  const source = document.createElement('source');
-  source.src = 'videos/musica.mp4'; // ou o link direto do vídeo
-  source.type = 'video/mp4';
-  bgMusic.appendChild(source);
+  const video = document.getElementById('bgVideo');
 
-  // Tira som mudo ao clicar
+  // Alguns navegadores bloqueiam autoplay com som
   window.addEventListener('load', () => {
-    bgMusic.play().catch(() => {
+    video.play().catch(() => {
+      // Se o navegador bloquear, toca no primeiro clique
       document.addEventListener('click', () => {
-        bgMusic.muted = false;
-        bgMusic.play();
+        video.play();
       }, { once: true });
     });
   });
-
-  // Esconde totalmente o player
-  bgMusic.style.display = 'none';
 </script>
 
 
@@ -455,5 +450,6 @@
   </script>
 </body>
 </html>
+
 
 

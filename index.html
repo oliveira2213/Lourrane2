@@ -1,0 +1,434 @@
+<!-- Tela de cartinha com efeito despedaçar e fontes românticas -->
+<link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+
+<div id="envelope">
+  <div class="envelope-content" id="letter">
+    <h2>💌 Uma cartinha de amor 💌</h2>
+    <p>Antes de entrar... cada pedacinho deste site foi feito com muito amor por você. 💗</p>
+    <button id="openLetter">Abrir ❤️</button>
+  </div>
+</div>
+
+<style>
+  #envelope {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at center, #1a001a 0%, #0b0010 90%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    overflow: hidden;
+  }
+
+  .envelope-content {
+    background: linear-gradient(145deg, #ff6ec7, #ffb3e6);
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 380px;
+    text-align: center;
+    color: #fff;
+    box-shadow: 0 0 30px #ff6ec7aa;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Quicksand', sans-serif;
+  }
+
+  .envelope-content h2 {
+    font-family: 'Parisienne', cursive;
+    font-size: 32px;
+    color: #fff;
+    text-shadow: 0 0 10px #ffb3e6;
+    margin-bottom: 12px;
+  }
+
+  .envelope-content p {
+    font-size: 17px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+
+  button {
+    background: #fff;
+    color: #ff3fa3;
+    font-size: 17px;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    padding: 10px 18px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 0 15px #fff;
+    font-family: 'Quicksand', sans-serif;
+  }
+  button:hover { background: #ff3fa3; color: #fff; box-shadow: 0 0 20px #ff3fa3; }
+
+  /* Partículas da carta */
+  .piece {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: inherit;
+    border-radius: 3px;
+    transition: transform 1s ease, opacity 1s ease;
+  }
+</style>
+
+<script>
+  const letter = document.getElementById('letter');
+  const openBtn = document.getElementById('openLetter');
+  const envelope = document.getElementById('envelope');
+
+  openBtn.addEventListener('click', () => {
+    const rect = letter.getBoundingClientRect();
+    const pieces = [];
+
+    // Cria 100 pedaços
+    for(let i=0;i<100;i++){
+      const piece = document.createElement('div');
+      piece.className='piece';
+      // Posição aleatória dentro da carta
+      piece.style.top = Math.random()*rect.height + 'px';
+      piece.style.left = Math.random()*rect.width + 'px';
+      letter.appendChild(piece);
+      pieces.push(piece);
+    }
+
+    // Faz carta desaparecer
+    letter.style.opacity=0;
+
+    // Anima cada pedaço voando em direção aleatória
+    pieces.forEach(p=>{
+      const x = (Math.random()-0.5)*400; // horizontal
+      const y = (Math.random()-0.5)*400; // vertical
+      const rot = (Math.random()-0.5)*720; // rotação
+      p.style.transform = `translate(${x}px, ${y}px) rotate(${rot}deg)`;
+      p.style.opacity=0;
+    });
+
+    // Remove envelope após animação
+    setTimeout(()=>envelope.style.display='none',1200);
+  });
+</script>
+
+<!-- Efeito de corações subindo -->
+<div class="hearts-background"></div>
+
+<style>
+  .hearts-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+    pointer-events: none;
+    background: transparent;
+  }
+
+  .heart {
+    position: absolute;
+    color: #ff8ad8;
+    font-size: 20px;
+    opacity: 0.8;
+    animation: floatUp 6s linear infinite;
+  }
+
+  @keyframes floatUp {
+    0% {
+      transform: translateY(100vh) scale(0.8);
+      opacity: 0;
+    }
+    20% { opacity: 1; }
+    100% {
+      transform: translateY(-10vh) scale(1.2);
+      opacity: 0;
+    }
+  }
+</style>
+
+<script>
+  const heartsContainer = document.querySelector('.hearts-background');
+
+  function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.textContent = '💗';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+    heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+    heartsContainer.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 7000);
+  }
+
+  setInterval(createHeart, 400);
+</script>
+
+
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pedido de Namoro — Lucas 💗 Lourrane</title>
+  <style>
+    :root{
+      --bg:#0f0211;
+      --neon1:#ff4db8;
+      --neon2:#ff77d1;
+      --accent:#ffeef9;
+      font-family:'Inter',sans-serif;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{background:linear-gradient(180deg,#120017,#0b0010);color:var(--accent);min-height:100vh;padding:20px;display:flex;flex-direction:column;align-items:center}
+    header{text-align:center;margin-bottom:20px}
+    h1{font-size:28px;color:var(--neon1);text-shadow:0 0 12px var(--neon2)}
+    p{opacity:.8;margin-top:4px}
+    nav{display:flex;gap:10px;margin-bottom:20px}
+    nav button{background:transparent;border:1px solid rgba(255,255,255,0.15);color:var(--accent);padding:10px 14px;border-radius:10px;cursor:pointer;transition:.3s}
+    nav button.active,nav button:hover{background:linear-gradient(90deg,var(--neon1),var(--neon2));color:#140014}
+    section{max-width:900px;width:100%;background:rgba(255,255,255,0.03);border-radius:16px;padding:20px;display:none}
+    section.active{display:block}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-top:12px}
+    .thumb img,.thumb video{width:100%;height:100%;object-fit:cover;border-radius:12px}
+    .thumb{overflow:hidden;position:relative;border-radius:12px;border:1px solid rgba(255,255,255,0.05)}
+    .memory-board{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:12px;margin-top:12px}
+    .card-mem{background:rgba(255,255,255,0.05);border-radius:10px;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;transform-style:preserve-3d;transition:transform .45s}
+    .card-mem.flipped{transform:rotateY(180deg)}
+    .card-front,.card-back{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;border-radius:10px;backface-visibility:hidden}
+    .card-front{background:linear-gradient(180deg,#1b001a,#25001e);color:#ffcfe9;font-size:24px}
+    .card-back{transform:rotateY(180deg);overflow:hidden}
+    .card-back img{width:100%;height:100%;object-fit:cover}
+    .romance{text-align:center;padding:20px}
+    .names{font-size:24px;font-weight:700;color:var(--neon1);text-shadow:0 0 18px rgba(255,77,184,0.25)}
+    .love-text{margin-top:20px;font-size:16px;line-height:1.5}
+    iframe{border-radius:12px;margin-top:20px}
+	/* Animação suave nas fotos */
+.grid .thumb img {
+  animation: floatLove 6s ease-in-out infinite;
+  transition: transform 0.3s ease;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(255, 150, 200, 0.5);
+}
+
+/* Movimento de flutuação */
+@keyframes floatLove {
+  0% {
+    transform: translateY(0px) translateX(0px);
+  }
+  25% {
+    transform: translateY(-8px) translateX(3px);
+  }
+  50% {
+    transform: translateY(0px) translateX(-4px);
+  }
+  75% {
+    transform: translateY(6px) translateX(2px);
+  }
+  100% {
+    transform: translateY(0px) translateX(0px);
+  }
+}
+
+/* Faz cada imagem ter um movimento diferente */
+.grid .thumb:nth-child(odd) img {
+  animation-duration: 7s;
+  animation-delay: 0.5s;
+}
+.grid .thumb:nth-child(even) img {
+  animation-duration: 8s;
+  animation-delay: 1s;
+}
+.grid .thumb img:hover {
+  transform: scale(1.05);
+  filter: brightness(1.2) saturate(1.3);
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Pedido de Namoro</h1>
+    <p>Lucas 💗 Lourrane</p>
+  </header>
+
+  <nav>
+    <button data-tab="gallery" class="active">Nossa Galeria💗</button>
+    <button data-tab="memory">Jogo da Memória</button>
+    <button data-tab="romance">Texto Romântico</button>
+  </nav>
+
+  <section id="gallery" class="active">
+    <h2>Nossa Galeria💗</h2>
+
+    <h3>Fotos</h3>
+    <div class="grid" id="photos">
+      <div class="thumb"><img src="fotos\foto1.JPG" alt="Foto 1"></div>
+      <div class="thumb"><img src="fotos\foto2.JPG" alt="Foto 2"></div>
+      <div class="thumb"><img src="fotos\foto3.JPG" alt="Foto 3"></div>
+      <div class="thumb"><img src="fotos\foto4.JPG" alt="Foto 4"></div>
+      <div class="thumb"><img src="fotos\foto5.JPG" alt="Foto 5"></div>
+      <div class="thumb"><img src="fotos\foto6.JPG" alt="Foto 6"></div>
+      <div class="thumb"><img src="fotos\foto7.jpeg" alt="Foto 7"></div>
+      <div class="thumb"><img src="fotos\foto8.jpeg" alt="Foto 8"></div>
+      <div class="thumb"><img src="fotos\foto9.jpeg" alt="Foto 9"></div>
+      <div class="thumb"><img src="fotos\foto10.jpeg" alt="Foto 10"></div>
+      <div class="thumb"><img src="fotos\foto11.jpeg" alt="Foto 11"></div>
+      <div class="thumb"><img src="fotos\foto12.jpeg" alt="Foto 12"></div>
+      <div class="thumb"><img src="fotos\foto13.jpeg" alt="Foto 13"></div>
+      <div class="thumb"><img src="fotos\foto14.jpg" alt="Foto 14"></div>
+      <div class="thumb"><img src="fotos\foto15.jpg" alt="Foto 15"></div>
+      <div class="thumb"><img src="fotos\foto16.jpg" alt="Foto 16"></div>
+      <div class="thumb"><img src="fotos\foto17.jpg" alt="Foto 17"></div>
+      <div class="thumb"><img src="fotos\foto18.jpg" alt="Foto 18"></div>
+      <div class="thumb"><img src="fotos\foto19.jpg" alt="Foto 19"></div>
+      <div class="thumb"><img src="fotos\foto20.jpg" alt="Foto 20"></div>
+      <div class="thumb"><img src="fotos\foto21.jpg" alt="Foto 21"></div>
+	  <div class="thumb"><img src="https://cdn.discordapp.com/attachments/1231375518381637743/1428150840492949684/2C3133FB-DBC5-4357-B192-857AF90CCB3D.jpg?ex=68f1749e&is=68f0231e&hm=0f8bbff8a27e8d0d2657452b5c507e509ef8babafca7f4cdd3b494a435d72982&" alt="Foto 22"></div>
+	  <div class="thumb"><img src="https://cdn.discordapp.com/attachments/1231375518381637743/1428150841126420542/IMG_2255.jpg?ex=68f1749e&is=68f0231e&hm=c6123f51a6302ec0c3a13bb2334fc93245cc6f9730bef4e6f57fab3cd54a6220&" alt="Foto 23"></div>
+	  <div class="thumb"><img src="https://cdn.discordapp.com/attachments/1231375518381637743/1428150841591857225/IMG_2256.jpg?ex=68f1749e&is=68f0231e&hm=90c5fc716317acc3419c2329d36f26a3f8aa9c5c3e2f0144f9b98b3dd894f89a&" alt="Foto 24"></div>
+	  <div class="thumb"><img src="https://cdn.discordapp.com/attachments/1231375518381637743/1428150842724454511/IMG_2272.jpg?ex=68f1749e&is=68f0231e&hm=f995d9720344f40e72380d719ee96c123ad12502160a9cfd8c686e999008aaba&" alt="Foto 25"></div>
+	  <div class="thumb"><img src="https://cdn.discordapp.com/attachments/1231375518381637743/1428151185810133224/IMG_2431.jpg?ex=68f174f0&is=68f02370&hm=cc6ee6b899f52886ed81abf9dad40b022548d0da7c39fa958322963087f44c6c&" alt="Foto 26"></div>
+	  <div class="thumb"><img src="https://cdn.discordapp.com/attachments/1231375518381637743/1428151186204135556/IMG_2474.jpg?ex=68f174f0&is=68f02370&hm=a361d13a0f9e4dfc2af418386d5e50b2a5000ec94bb84916d63bb0995c8f0f49&" alt="Foto 27"></div>
+	  <div class="thumb"><img src="https://cdn.discordapp.com/attachments/1231375518381637743/1428151186749522070/IMG_2481.jpg?ex=68f174f0&is=68f02370&hm=6c1530b198521befb35ee61073e0949758a074620ca57d4b7b63cdca7c1a893f&" alt="Foto 28"></div>
+    </div>
+
+    <h3>Vídeos</h3>
+    <div class="grid" id="videos">
+      <div class="thumb"><video src="videos\video1.MOV" controls></video></div>
+      <div class="thumb"><video src="videos\video2.MOV" controls></video></div>
+	  <div class="thumb"><video src="https://cdn.discordapp.com/attachments/1231375518381637743/1428171258817941557/IMG_2275.mov?ex=68f187a2&is=68f03622&hm=04407188745e66a736504bcb674ee4906182175c5f7893e91ad654868e6b642e&" controls></video></div>
+	  <div class="thumb"><video src="https://cdn.discordapp.com/attachments/1231375518381637743/1428171260562636800/ae298574be7a47c8b138715a055f3938.mov?ex=68f187a2&is=68f03622&hm=c0fe5697e119f40136b5a7426dfccde02c52b44d965b6a12ae2e5eaa4c259e5f&" controls></video></div>
+	  <div class="thumb"><video src="https://cdn.discordapp.com/attachments/1231375518381637743/1428171417769218171/f7a77293a5c84f1fb7470be605059030.mov?ex=68f187c8&is=68f03648&hm=96d9404ceb6835e7be3b33cc9c04f520f76fe5a8e27910d37a44b7c0eff6e6b0&" controls></video></div>
+	  <div class="thumb"><video src="https://cdn.discordapp.com/attachments/1231375518381637743/1428171489655390219/bee9e2b014ef40f08a56f9e2711a2ae8.mov?ex=68f187d9&is=68f03659&hm=f8a302a5414dcdf505adfea1c00d2b74327b4f2e00ed733057efedb666016f8d&" controls></video></div>
+	  <div class="thumb"><video src="https://cdn.discordapp.com/attachments/1231375518381637743/1428171490569883728/ccad20ae1c1f40c7abb6df341edf1df6.mov?ex=68f187d9&is=68f03659&hm=9816542b36bb4225f51b805c8383ab4e1c8288b07c5a136978544ab587a4d510&" controls></video></div>
+	  <div class="thumb"><video src="https://cdn.discordapp.com/attachments/1231375518381637743/1428171491383574581/575b1ae0906e47218f47b7d2ae1b0b8f.mov?ex=68f187d9&is=68f03659&hm=24df8688052ac5af7e9acb2976cbc8aa4f1e5d43e2599b1dda9b5bfc817b31f6&" controls></video></div>
+	  <div class="thumb"><video src="https://cdn.discordapp.com/attachments/1231375518381637743/1428171491995947189/d44d1d7acc464cb2a68b55f49e109ae4.mov?ex=68f187d9&is=68f03659&hm=b1b9b212fad8c986b6a5a68eaade1ee63cebd439a5bbb39b329db0e32715d5a6&" controls></video></div>
+	  <div class="thumb"><video src="https://cdn.discordapp.com/attachments/1231375518381637743/1428171832242077787/61c17657ae774b2f848bd87238ad2367.mov?ex=68f1882a&is=68f036aa&hm=722391ed7431acc1e047ba4427d7a01fdb8629c7a76fa77051bacbaa741c7adb&" controls></video></div>
+	  <div class="thumb"><video src="https://cdn.discordapp.com/attachments/1231375518381637743/1428171832569368576/IMG_2510.mov?ex=68f1882b&is=68f036ab&hm=bb3cfa8e0854be9e58ca5e84eaeac14053f2e1fc4b1d6cb419d9400f7a93bb8b&" controls></video></div>
+	  <div class="thumb"><video src="https://cdn.discordapp.com/attachments/1231375518381637743/1428171832950788228/IMG_2715.mov?ex=68f1882b&is=68f036ab&hm=eb11a6936b8589452429c3a24ff09fb7886e703c9924e52a898ce9a9c2c785d7&" controls></video></div>
+	  <div class="thumb"><video src="https://cdn.discordapp.com/attachments/1231375518381637743/1428171833743769724/IMG_2716.mov?ex=68f1882b&is=68f036ab&hm=9825ec9ad7d0f3fc8d33a0c38f7fe84cee846c138c5017c3658d2475cb5bcc15&" controls></video></div>
+    </div>
+
+  </section>
+
+  <section id="memory">
+    <h2>Jogo da Memória</h2>
+    <p style="margin-top:10px">Um joguinho fofo com nossas fotos.</p>
+    <div id="memoryBoard" class="memory-board"></div>
+  </section>
+
+  <section id="romance">
+  <div class="romance">
+    <div class="names">Lucas 💗 Lourrane</div>
+    <div class="love-text">
+      <p>Meu amor,</p>
+      <p>Desde que te conheci, tudo ao meu redor ganhou cor, brilho e sentido. O seu sorriso ilumina meus dias, a sua voz acalma o meu coração e o simples fato de pensar em você já faz o mundo parecer mais leve, mais bonito, mais cheio de esperança. 💞</p>
+      <p>Cada momento ao seu lado é um pedacinho de felicidade que guardo com carinho. Você chegou de um jeito tão doce, tão único, e foi se tornando parte dos meus pensamentos, dos meus sonhos e até das minhas músicas favoritas.</p>
+      <p>Eu adoro o jeito que você ri, o brilho dos seus olhos quando está feliz, e até o seu silêncio, que diz tanto sem precisar de palavras. Você me inspira, me faz querer ser alguém melhor, me faz acreditar no amor verdadeiro.</p>
+      <p>Quero estar ao seu lado nas coisas simples — nas conversas de madrugada, nos abraços demorados, nas risadas sem motivo e até nas lágrimas, se elas aparecerem. Quero dividir meus momentos, meus sonhos, meus planos e construir um futuro ao seu lado, passo a passo, com amor e cumplicidade.</p>
+      <p>Você é o motivo do meu sorriso e a dona do meu coração.</p>
+      <p>E é por isso que hoje, com todo o amor que eu sinto...</p>
+      <p><strong>Quer namorar comigo? 💗</strong></p>
+    </div>
+  </div>
+</section>
+
+      <video id="bgVideo" width="560" height="315" controls autoplay loop>
+  <source src="videos/musica.mp4" type="video/mp4">
+  Seu navegador não suporta vídeo HTML5.
+</video>
+
+<script>
+  const video = document.getElementById('bgVideo');
+
+  // Alguns navegadores bloqueiam autoplay com som
+  window.addEventListener('load', () => {
+    video.play().catch(() => {
+      // Se o navegador bloquear, toca no primeiro clique
+      document.addEventListener('click', () => {
+        video.play();
+      }, { once: true });
+    });
+  });
+</script>
+
+
+  </div>
+  </section>
+
+  <script>
+    // Troca de abas
+    const tabs=document.querySelectorAll('nav button');
+    const sections=document.querySelectorAll('section');
+    tabs.forEach(b=>b.addEventListener('click',()=>{
+      tabs.forEach(btn=>btn.classList.remove('active'));
+      b.classList.add('active');
+      sections.forEach(sec=>sec.classList.remove('active'));
+      document.getElementById(b.dataset.tab).classList.add('active');
+    }));
+
+    // Jogo da memória com 40 cartas
+    const images=[
+      'https://media.discordapp.net/attachments/1231375518381637743/1428075012602200165/foto1.JPG?ex=68f12dff&is=68efdc7f&hm=4aa6ffb19651b55d869c27ae4d08a11aa358f2e48dfa0ede04a3fcfbbe3e9304&=&format=webp&width=369&height=656',
+      'https://media.discordapp.net/attachments/1231375518381637743/1428075032835391659/foto2.JPG?ex=68f12e04&is=68efdc84&hm=e7b7f6490d9a07c1a62aeab353bf04915591dc3d9467c91271942f91bb379ba8&=&format=webp&width=369&height=656',
+      'https://cdn.discordapp.com/attachments/1231375518381637743/1428075042771566713/foto6.JPG?ex=68f12e06&is=68efdc86&hm=012e1d7621fb6dca50b53a32309402667c1dfee62a0c8714617e679015d6bf15&',
+      'https://cdn.discordapp.com/attachments/1231375518381637743/1428075164297334896/foto21.jpg?ex=68f12e23&is=68efdca3&hm=778b91ee5727315dd16f340fc0a1ab2a343a641acac5ff82bd32bc11211513fa&',
+	  'https://cdn.discordapp.com/attachments/1231375518381637743/1428075163861258240/foto13.jpeg?ex=68f12e23&is=68efdca3&hm=dd50413abd1dc89e5f4bdfb3678d41516d91cd9da9c23f75859890da24c1bf0a&',
+	  'https://media.discordapp.net/attachments/1231375518381637743/1428140413792948325/foto3.JPG?ex=68f16ae8&is=68f01968&hm=0155b73545c1e71066a60d0f7ae78e48da17aba73d4046a44f9a66aebcfd0183&=&format=webp&width=414&height=552',
+	  'https://cdn.discordapp.com/attachments/1231375518381637743/1428075164712833094/foto22.jpg?ex=68f12e23&is=68efdca3&hm=cefcdd9a023eb6bb50b6513c9faebdfdb1fd1ac727f2b671d57f8270f59bdd50&',
+	  'https://cdn.discordapp.com/attachments/1231375518381637743/1428075165056499785/foto5.JPG?ex=68f12e23&is=68efdca3&hm=73acbbd2965acf4e53e62a29fd44ae1aa07642634aa288a5e414f55c3e7c52e6&',
+	  'https://cdn.discordapp.com/attachments/1231375518381637743/1428075165371338945/foto7.jpeg?ex=68f12e23&is=68efdca3&hm=f500f297d1e399991e2d46a4ec4e8aa968969b772563c47dcab258431ea8f7a2&',
+	  'https://cdn.discordapp.com/attachments/1231375518381637743/1428075165769666681/foto10.jpeg?ex=68f12e23&is=68efdca3&hm=e1365300b5d72b3ce57548435e2f26be1ee349b1f6c649c4865ed881599cf67b&',
+	  'https://media.discordapp.net/attachments/1231375518381637743/1428151186204135556/IMG_2474.jpg?ex=68f174f0&is=68f02370&hm=a361d13a0f9e4dfc2af418386d5e50b2a5000ec94bb84916d63bb0995c8f0f49&=&format=webp&width=415&height=552',
+	  'https://cdn.discordapp.com/attachments/1231375518381637743/1428140414162174012/foto4.JPG?ex=68f16ae8&is=68f01968&hm=9fbdd3b41be2575cb8fea846dbc5bf9795da73104657ed15d73f75df52f04945&',
+	  'http://cdn.discordapp.com/attachments/1231375518381637743/1428140415311151124/foto9.jpeg?ex=68f16ae8&is=68f01968&hm=02c2f91ca6776818cce1dd5f5712e02eec35c7e86783c31b7dee69e0b38d00af&',
+	  'https://cdn.discordapp.com/attachments/1231375518381637743/1428140415990632640/foto15.jpg?ex=68f16ae8&is=68f01968&hm=663a7958470582d301e6ce399534c2aa3310814872fe599df58568168f1fb3c3&',
+	  'https://cdn.discordapp.com/attachments/1231375518381637743/1428150840492949684/2C3133FB-DBC5-4357-B192-857AF90CCB3D.jpg?ex=68f1749e&is=68f0231e&hm=0f8bbff8a27e8d0d2657452b5c507e509ef8babafca7f4cdd3b494a435d72982&',
+	  'https://cdn.discordapp.com/attachments/1231375518381637743/1428150841126420542/IMG_2255.jpg?ex=68f1749e&is=68f0231e&hm=c6123f51a6302ec0c3a13bb2334fc93245cc6f9730bef4e6f57fab3cd54a6220&',
+	  'https://cdn.discordapp.com/attachments/1231375518381637743/1428151185810133224/IMG_2431.jpg?ex=68f174f0&is=68f02370&hm=cc6ee6b899f52886ed81abf9dad40b022548d0da7c39fa958322963087f44c6c&',
+	  'https://cdn.discordapp.com/attachments/1231375518381637743/1428151186749522070/IMG_2481.jpg?ex=68f174f0&is=68f02370&hm=6c1530b198521befb35ee61073e0949758a074620ca57d4b7b63cdca7c1a893f&',
+	  'https://cdn.discordapp.com/attachments/1231375518381637743/1428151187705823242/IMG_2536.jpg?ex=68f174f0&is=68f02370&hm=7a0e87f5ecd6b5140cb60bf544e03514c8c7ab35e84e7fe2e84f7e408e3c92e9&',
+	  'https://cdn.discordapp.com/attachments/1231375518381637743/1428150841591857225/IMG_2256.jpg?ex=68f1749e&is=68f0231e&hm=90c5fc716317acc3419c2329d36f26a3f8aa9c5c3e2f0144f9b98b3dd894f89a&',
+	  
+    ];
+    let deck=[];
+    while(deck.length<40){ deck.push(...images); }
+    deck=deck.slice(0,40);
+    deck.sort(()=>Math.random()-0.5);
+
+    const board=document.getElementById('memoryBoard');
+    let first=null, second=null, lock=false, matches=0;
+    deck.forEach(src=>{
+      const c=document.createElement('div');
+      c.className='card-mem';
+      const front=document.createElement('div'); front.className='card-front'; front.textContent='?';
+      const back=document.createElement('div'); back.className='card-back'; const im=document.createElement('img'); im.src=src; back.appendChild(im);
+      c.appendChild(front); c.appendChild(back);
+      board.appendChild(c);
+
+      c.addEventListener('click',()=>{
+        if(lock||c.classList.contains('flipped')) return;
+        c.classList.add('flipped');
+        if(!first) first=c;
+        else{
+          second=c; lock=true;
+          if(first.querySelector('img').src===second.querySelector('img').src){
+            matches++; first=null; second=null; lock=false;
+            if(matches===deck.length/2) setTimeout(()=>alert('Você combinou todas as cartas! 💕'),200);
+          } else {
+            setTimeout(()=>{
+              first.classList.remove('flipped'); second.classList.remove('flipped');
+              first=null; second=null; lock=false;
+            },800);
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
